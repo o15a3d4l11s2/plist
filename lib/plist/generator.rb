@@ -83,7 +83,7 @@ module Plist
               tag('dict', nil, level)
             else
               tag('dict', '', level) do
-                element.sort_by{|k,v| k.to_s }.collect do |k,v| 
+                element.collect do |k,v| 
                   tag('key', CGI.escapeHTML(k.to_s), level + 1) +
                   build(v, level + 1)
                 end.join
