@@ -116,7 +116,12 @@ module Plist
           block.call +
           indent("</#{type}>\n", level)
         elsif contents.to_s.empty?
-          indent("<#{type}></#{type}>\n", level)
+          case type
+            when true, false
+              indent("<#{type}/>\n", level)
+            else
+              indent("<#{type}></#{type}>\n", level)
+          end
         else
           indent("<#{type}>#{contents.to_s}</#{type}>\n", level)
         end
